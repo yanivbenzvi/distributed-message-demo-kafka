@@ -1,0 +1,48 @@
+# Default values for message-system.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+kafka-cluster:
+  external:
+    enabled: true
+    service:
+      type: LoadBalancer
+      port: 9094
+    dns:
+      useExternal: false
+      useInternal: false
+
+  externalAccess:
+    enabled: true
+    autoDiscovery:
+      enabled: false
+      image:
+        registry: docker.io
+        repository: bitnami/kubectl
+        tag: 1.23.4-debian-10-r17
+        pullPolicy: IfNotPresent
+        pullSecrets: [ ]
+      resources:
+        limits: { }
+        requests: { }
+    service:
+      type: NodePort
+      port: 9094
+      loadBalancerIPs: [ ]
+      loadBalancerSourceRanges: [ ]
+      nodePorts:
+        - 30000
+      useHostIPs: false
+      annotations: { }
+      domain: 127.0.0.1
+  serviceAccount:
+    create: true
+  rbac:
+    create: true
+
+
+kafka-ui:
+  envs:
+    config:
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: message-service-kafka-cluster:9092
+    SERVER_PORT: 8080

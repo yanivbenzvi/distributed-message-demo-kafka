@@ -1,0 +1,13 @@
+RUN groupadd -g 999 python && \
+    useradd -r -u 999 -g python python
+
+RUN chown python:python .
+RUN mkdir usage_files
+
+COPY --chown=python:python ./app/ $PYSETUP_PATH
+COPY --chown=python:python --from=builder $VENV_PATH $VENV_PATH
+EXPOSE 8000
+
+USER 999
+
+CMD ["gunicorn", "app.main:app", "-c", "app/gunicorn_config.py"]
