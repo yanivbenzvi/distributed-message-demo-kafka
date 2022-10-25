@@ -15,7 +15,7 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
     POETRY_VERSION=1.1.13 \
-    POETRY_HOME="/opt/poetry" \
+    POETRY_HOME=/opt/poetry \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
     PYSETUP_PATH="/app" \
@@ -61,5 +61,6 @@ COPY --chown=python:python --from=builder $VENV_PATH $VENV_PATH
 EXPOSE 8000
 
 USER 999
+ENV PYTHONPATH=/app
 
 CMD ["gunicorn", "app.main:app", "-c", "app/gunicorn_config.py"]

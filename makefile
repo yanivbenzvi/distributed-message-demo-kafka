@@ -1,5 +1,5 @@
 producer-build:
-	docker build -t localhost:5000/producer:1.3 -f producer/Dockerfile producer
+	docker build -t localhost:5000/producer:1.5 -f producer/Dockerfile producer
 
 producer-deploy:
 	helm upgrade -i message-producer infra/producer --namespace message-system --create-namespace --values infra/producer/values.yaml
@@ -8,7 +8,7 @@ producer-uninstall-helm:
 	helm uninstall message-producer --namespace message-system
 
 consumer-build:
-	docker build -t localhost:5000/consumer:1.3 -f consumer/Dockerfile consumer
+	docker build -t localhost:5000/consumer:1.5 -f consumer/Dockerfile consumer
 
 consumer-deploy:
 	helm upgrade -i message-consumer infra/consumer --namespace message-system --create-namespace --values infra/consumer/values.yaml

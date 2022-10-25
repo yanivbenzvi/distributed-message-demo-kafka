@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 from aiokafka import AIOKafkaConsumer, TopicPartition, ConsumerRecord
 import logging
 
-from .kafka_client import consume
+from kafka_client import consume
 
 logger = logging.getLogger(__name__)
 

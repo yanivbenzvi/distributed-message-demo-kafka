@@ -61,5 +61,6 @@ COPY --chown=python:python --from=builder $VENV_PATH $VENV_PATH
 EXPOSE 8000
 
 USER 999
+ENV PYTHONPATH=/app
 
 CMD ["gunicorn", "app.main:app", "-c", "app/gunicorn_config.py"]

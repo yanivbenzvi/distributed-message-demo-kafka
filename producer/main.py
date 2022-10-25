@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 import logging
 
-from .kafka_client import KafkaProducer
+from kafka_client import KafkaProducer
 
 app = FastAPI()
 logger = logging.getLogger(__name__)
